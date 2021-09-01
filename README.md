@@ -24,4 +24,4 @@ https://github.com/leftl/BromiteFilterScript/releases/latest/download/filters.da
 ```
 Every two days, updated lists are pulled and a new filterlist will be built.
 
-| NOTE: You must restart the browser for the filters to be activated. CSS rules are currently incompatible.
+> NOTE: You must restart the browser for the filters to be activated. CSS rules are currently incompatible.
