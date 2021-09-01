@@ -15,3 +15,11 @@ chmod +x makefilters.sh
 * Place the generated filters.dat somewhere in you webserver dir and configure Bromite to download it.
 * Enjoy
 * You may want to create a cron job to automate filter updates 
+
+# Configre Browser
+
+In Bromite, browse to **Settigs > AdBlock settings > Filters URL** and enter the following:
+```
+https://github.com/leftl/BromiteFilterScript/releases/latest/download/filters.dat
+```
+Every two days, updated lists are pulled and a new filterlist will be built.
