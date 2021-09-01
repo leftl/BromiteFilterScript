@@ -1,5 +1,4 @@
-#!/bin/sh
-cd "$(dirname "${BASH_SOURCE[0]}")"
+#!/bin/bash
 
 # Download the ruleset converter if we dont have it already
 BIN="ruleset_converter"
@@ -26,17 +25,17 @@ shopt -s lastpipe
 sed 's/#.*//' filters.conf | grep -E '\S+*\s+https?://\S+\s*$' | readarray -t CONFIG
 
 for LINE in "${CONFIG[@]}"; do
-    ARGS=(${LINE})
+    mapfile -t ARGS <<< "${LINE}"
     FILE="${ARGS[0]}.txt"
     URL="${ARGS[1]}"
     if [[ -f "${FILE}" ]]; then
 	FTIME=$(stat -L --format %Y "$FILE")
-	if [[ $(( ($NOW - $FTIME) > 8*3600 )) == 1 ]]; then
-    	    echo Updating ${FILE} 
+	if [[ $(( (NOW - FTIME) > 8*3600 )) == 1 ]]; then
+    	    echo "Updating ${FILE}"
 	    curl -Lsf -o "${FILE}" -z "${FILE}" "${URL}" && DOWNLOADED=true
 	fi
     else
-        echo Downloading "${FILE}"
+        echo "Downloading ${FILE}"
 	curl -Lsf -o "${FILE}" "${URL}" && DOWNLOADED=true
     fi
     [[ -f "${FILE}" ]] && FILES="${FILES},${FILE}"
@@ -47,7 +46,7 @@ FILES="${FILES:1}"
 if [[ "$DOWNLOADED" == "true" || ! -f filters.dat ]]; then 
     echo Creating filters.dat 
     ./ruleset_converter --input_format=filter-list --output_format=unindexed-ruleset \
-	--input_files=${FILES} --output_file=filters.dat &> /dev/null
+	--input_files="${FILES}" --output_file=filters.dat &> /dev/null
     exit 0
 fi
 
