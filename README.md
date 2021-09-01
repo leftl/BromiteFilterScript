@@ -18,7 +18,7 @@ chmod +x makefilters.sh
 
 # Configre Browser
 
-In Bromite, browse to **Settigs > AdBlock settings > Filters URL** and enter the following:
+In Bromite, browse to **Settings > AdBlock settings > Filters URL** and enter the following:
 ```
 https://github.com/leftl/BromiteFilterScript/releases/latest/download/filters.dat
 ```
