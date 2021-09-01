@@ -41,7 +41,7 @@ jobs:
       - name: Release filter lists
         uses: softprops/action-gh-release@v1
         with:
-          files: filters.dat
+          files: build/filters.dat
           name: Filterlist - ${{ env.DATE }}
           tag_name: ${{ env.DATE }}-${{ env.SHORT_COMMIT }}
         env:
