@@ -3,8 +3,7 @@
 # Download the ruleset converter if we dont have it already
 BIN="ruleset_converter"
 if [[ ! -x ${BIN} ]]; then
-    URL="$(curl -sLI -o /dev/null -w '%{url_effective}' 'https://github.com/bromite/filters/releases/latest/')"
-    URL="${URL//tag/download}/${BIN}"
+    URL="https://github.com/bromite/bromite/releases/downloads/latest/${BIN}"
     echo "Downloading ${URL}"
     curl -L "${URL}" -o ${BIN}
     if file ${BIN}|grep -q "ELF 64-bit LSB"; then
